@@ -25,12 +25,27 @@ uv sync
 
 ### Dependencies
 
-Core dependencies include:
+**⚠️ Important: This project requires two separate environments due to package conflicts.**
+
+#### Main Analysis Environment
+For the analysis notebooks and `neuroglancer_injections_coords_utils.py`:
 - `ipykernel` - Jupyter notebook support
-- `npc_lims` / `npc_sessions` - Session data access (install separately)
-- `dynamic_routing_analysis` - Analysis utilities (install separately)
-- `allensdk` - Allen Institute SDK for CCF utilities
+- `npc_lims` / `npc_sessions` - Session data access
+- `dynamic_routing_analysis` - Analysis utilities
 - `aind-zarr-utils` - For neuroglancer coordinate conversion
+
+#### TissueCyte Environment (separate)
+For `tissuecyte_injections_coords_utils.py`:
+- `allensdk` - Allen Institute SDK for CCF utilities
+
+The `allensdk` package conflicts with `dynamic_routing_analysis` and cannot be installed in the same environment. Create a separate environment when working with TissueCyte coordinate utilities.
+
+```bash
+# Create separate environment for TissueCyte utils
+uv venv .venv-tissuecyte
+source .venv-tissuecyte/bin/activate  # or .venv-tissuecyte\Scripts\activate on Windows
+uv pip install allensdk
+```
 
 ## Project Structure
 
@@ -64,10 +79,14 @@ dr_muscimol_analysis/
 ## Utils 
 
 ### `tissuecyte_injections_coords_utils.py`
+**⚠️ Requires separate environment with `allensdk`** (conflicts with main analysis environment)
+
 Functions for mapping injection coordinates to the Allen CCF using TissueCyte data:
 - `sort_structures_by_region()` - Categorize CCF structures into broad brain regions
 
 ### `neuroglancer_injections_coords_utils.py`
+*Uses main analysis environment with `aind-zarr-utils`*
+
 Functions for converting neuroglancer annotation files to CCF coordinates:
 - `convert_neuroglancer_points_to_ccf()` - Batch convert annotation JSONs
 - `clean_neurogrlancer_ccf_pts()` - Clean and reformat coordinate data
@@ -83,9 +102,4 @@ Functions for converting neuroglancer annotation files to CCF coordinates:
 import npc_sessions
 session = npc_sessions.Session('ecephys_XXXXXX_YYYY-MM-DD_HH-MM-SS')
 ```
-
-## Brain Regions
-
-The analysis focuses on the following CCF regions:
- - Isocortex, Thalamus, Midbrain, etc.
 
