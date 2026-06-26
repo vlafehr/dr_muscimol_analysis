@@ -1,6 +1,6 @@
 # Dynamic Routing Muscimol Analysis
 
-Analysis of muscimol inactivation experiments for the Dynamic Routing project. This repository contains Jupyter notebooks and utils files for analyzing behavioral effects of pharmacological inactivation in across mouse brain.
+Analysis of muscimol inactivation experiments for the Dynamic Routing project. This repository contains Jupyter notebooks and utils files for analyzing behavioral effects of pharmacological inactivation across mouse brain.
 
 ## Overview
 
