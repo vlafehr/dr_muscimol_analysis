@@ -4,7 +4,7 @@ Analysis of muscimol inactivation experiments for the Dynamic Routing project. T
 
 ## Overview
 
-This project investigates how targeted muscimol injections to specific brain regions (e.g., ORBmvl, CP) affect behavioral performance in a dynamic routing task. The analysis pipeline includes:
+This project investigates how targeted muscimol injections to specific brain regions (e.g., ORBvl, CP) affect behavioral performance in a dynamic routing task. The analysis pipeline includes:
 
 - Behavioral metrics extraction from experimental sessions
 - Injection site coordinate mapping to the Allen Common Coordinate Framework (CCF)
