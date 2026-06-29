@@ -5,7 +5,7 @@ Analysis of muscimol inactivation experiments for the Dynamic Routing project. T
 - analyze different elements of behavior in control versus perturbation sessions
 - map injection site coordinates to the Allen Common Coordinate Framework (CCF)
 - look at electrophysiological effects of muscimol in the brain
-- and more...(Look under 'Notebooks' description below for a directory of what each notebook does)
+- and more...(Look under 'Notebooks' description below for a description of what each notebook does)
 
 
 ## Navigate to project directory
@@ -35,7 +35,7 @@ sdk and dr are mutually exclusive. syncing one disengages the dependencies of th
 | `muscimol_controls_analysis.ipynb` | compares behavior in control sessions with and without saline injections to muscimol sessions |
 | `ORBm_versus_AId_analysis.ipynb` | restricts behaviroal analysis to subregions in orbitofrontal cortex |
 | `adaptations_analysis.ipynb` | looks at behavioral adaptations to consecutive muscimol injection sessions |
-| `adaptations_pat_2_analysis.ipynb` | looks at electrophysiological adaptations to consecutive muscimol injection sessions
+| `adaptations_analysis_part_2.ipynb` | looks at electrophysiological adaptations to consecutive muscimol injection sessions
 | `ccf_injection_coords_behavior_metric_correlations.ipynb` | looks at ccf-aligned muscimol injections and attempts to correlate structure-specific inactivation to behavioral outcomes |
 | `poster_session_muscimol_figures.ipynb` | generates SfN ready figures for switching dynamics and response rates in control vs muscimol sessions |
 
@@ -57,6 +57,7 @@ Contains functions that convert neuroglancer annotation files in .json format to
 
 ## How to use
 -need credentials for aws and codeoecean
+
 -check quilt if importing sessions isn't working. sometimes need to update quilt. ask ben hardcastle to run script for update.
 
 
