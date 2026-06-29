@@ -11,11 +11,11 @@ Analysis of muscimol inactivation experiments for the Dynamic Routing project. T
 ## Navigate to project directory
 cd path/to/dr_muscimol_analysis
 
-# Dependencies
+### Dependencies
 
 This project requires two separate environments due to package conflicts. The `allensdk` package conflicts with `dynamic_routing_analysis` and cannot be installed in the same environment. Create a separate environment when working with TissueCyte coordinate utilities. This project uses [UV](https://docs.astral.sh/uv/) for dependency management.
 
-# Install environments with specific dependencies
+### Install environments with specific dependencies
 Toggle between two different envs using uv optional functionality when running notebooks and utils for this project.
 
 use dr (dynamic routing) for every notebook and neuroglancer_injections_coords_utils.py EXCEPT for `tissuecyte_injections_coords_utils.py`:
@@ -43,13 +43,13 @@ sdk and dr are mutually exclusive. syncing one disengages the dependencies of th
 
 Both utils files pull coordinate files from this folder: Z:\Vayle\Muscimol\injections_ccf_coordinates
 
-# `tissuecyte_injections_coords_utils.py`
+### `tissuecyte_injections_coords_utils.py`
 **Requires sdk environment (includes allensdk, deactivates dependencies in dr env)** (conflicts with dr environment)
 
 Contains functions that convert TissueCyte injection coordinate data in .csv format to CCF data.
 
 
-# `neuroglancer_injections_coords_utils.py`
+### `neuroglancer_injections_coords_utils.py`
 **Requires dr environment (includes aind_zarr_utils, deactivates dependencies in sdk env)**
 
 Contains functions that convert neuroglancer annotation files in .json format to CCF coordinates.
