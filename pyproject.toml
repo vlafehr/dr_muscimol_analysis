@@ -10,7 +10,8 @@ dependencies = [
 
 [project.optional-dependencies]
 sdk = [
-  "allensdk"
+  "allensdk",
+  "numpy>=1.0",
 ]
 
 dr = [
@@ -18,6 +19,7 @@ dr = [
     "polars>=1.36.1",
     "codeocean==0.14.0", # 0.15.0/0.16.0 not compatible as of 29/06/26
     "npc-sessions>=0.0.273",
+    "fastexcel>=0.16.0",
 ]
 
 [tool.uv.sources]   
