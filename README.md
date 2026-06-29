@@ -1,105 +1,62 @@
-# Dynamic Routing Muscimol Analysis
+## Dynamic Routing Muscimol Analysis
 
-Analysis of muscimol inactivation experiments for the Dynamic Routing project. This repository contains Jupyter notebooks and utils files for analyzing behavioral effects of pharmacological inactivation across mouse brain.
+Analysis of muscimol inactivation experiments for the Dynamic Routing project. This repository contains Jupyter notebooks and utils files for analyzing behavioral effects of pharmacological inactivation across the mouse brain. Run noteboooks using envrionment requirements specified below. With the notebooks included in this project, you can:
 
-## Overview
+- analyze different elements of behavior in control versus perturbation sessions
+- map injection site coordinates to the Allen Common Coordinate Framework (CCF)
+- look at electrophysiological effects of muscimol in the brain
+- and more...(Look under 'Notebooks' description below for a directory of what each notebook does)
 
-This project investigates how targeted muscimol injections to specific brain regions (e.g., ORBvl, CP) affect behavioral performance in a dynamic routing task. The analysis pipeline includes:
 
-- Behavioral metrics extraction from experimental sessions
-- Injection site coordinate mapping to the Allen Common Coordinate Framework (CCF)
-- Statistical comparisons between control and perturbation conditions
-- Visualization of results for poster presentations
-
-## Installation
-
-This project uses [UV](https://docs.astral.sh/uv/) for dependency management.
-
-```bash
-# Navigate to project directory
+## Navigate to project directory
 cd path/to/dr_muscimol_analysis
 
-# Install dependencies
-uv sync
-```
+# Dependencies
 
-### Dependencies
+This project requires two separate environments due to package conflicts. The `allensdk` package conflicts with `dynamic_routing_analysis` and cannot be installed in the same environment. Create a separate environment when working with TissueCyte coordinate utilities. This project uses [UV](https://docs.astral.sh/uv/) for dependency management.
 
-**⚠️ Important: This project requires two separate environments due to package conflicts.**
+# Install environments with specific dependencies
+Toggle between two different envs using uv optional functionality when running notebooks and utils for this project.
 
-#### Main Analysis Environment
-For the analysis notebooks and `neuroglancer_injections_coords_utils.py`:
-- `ipykernel` - Jupyter notebook support
-- `npc_lims` / `npc_sessions` - Session data access
-- `dynamic_routing_analysis` - Analysis utilities
-- `aind-zarr-utils` - For neuroglancer coordinate conversion
+use dr (dynamic routing) for every notebook and neuroglancer_injections_coords_utils.py EXCEPT for `tissuecyte_injections_coords_utils.py`:
+uv sync --extra dr
 
-#### TissueCyte Environment (separate)
-For `tissuecyte_injections_coords_utils.py`:
-- `allensdk` - Allen Institute SDK for CCF utilities
+use sdk (allensdk) for `tissuecyte_injections_coords_utils.py` ONLY:
+uv sync --extra sdk
 
-The `allensdk` package conflicts with `dynamic_routing_analysis` and cannot be installed in the same environment. Create a separate environment when working with TissueCyte coordinate utilities.
+sdk and dr are mutually exclusive. syncing one disengages the dependencies of the other and vice versa.
 
-```bash
-# Create separate environment for TissueCyte utils
-uv venv .venv-tissuecyte
-source .venv-tissuecyte/bin/activate  # or .venv-tissuecyte\Scripts\activate on Windows
-uv pip install allensdk
-```
-
-## Project Structure
-
-```
-dr_muscimol_analysis/
-├── pyproject.toml                          # Project configuration
-├── README.md
-└── notebooks/
-    ├── muscimol_analysis_notebook.ipynb    # Main muscimol analysis pipeline
-    ├── muscimol_controls_analysis.ipynb    # Control condition analysis
-    ├── ORBm_versus_AId_analysis.ipynb      # Regional comparison analysis
-    ├── adaptations_analysis.ipynb          # Behavioral adaptation analysis
-    ├── adaptations_analysis_part_2.ipynb   # Extended adaptation analysis
-    ├── ccf_injection_coords_behavior_metric_correlations.ipynb  # Coordinate-behavior correlations
-    ├── poster_session_muscimol_figures.ipynb  # Figure generation for presentations
-    ├── neuroglancer_injections_coords_utils.py  # Neuroglancer → CCF conversion
-    └── tissuecyte_injections_coords_utils.py    # TissueCyte → CCF mapping utilities
-```
 
 ## Notebooks
 
 | Notebook | Description |
 |----------|-------------|
-| `muscimol_analysis_notebook.ipynb` | Primary analysis of muscimol injection effects on behavior |
-| `muscimol_controls_analysis.ipynb` | Analysis of control (saline) sessions |
-| `ORBm_versus_AId_analysis.ipynb` | Comparison between ORB subregions: ORBm vs AId inactivation effects |
-| `adaptations_analysis.ipynb` | Analysis of behavioral adaptations over consecutive muscimol injection sessions |
-| `ccf_injection_coords_behavior_metric_correlations.ipynb` | Correlating injection coordinates with behavioral outcomes |
-| `poster_session_muscimol_figures.ipynb` | Generate SfN ready figures |
+| `muscimol_analysis_notebook.ipynb` | includes ephys analysis of muscimol effects |
+| `muscimol_controls_analysis.ipynb` | compares behavior in control sessions with and without saline injections to muscimol sessions |
+| `ORBm_versus_AId_analysis.ipynb` | restricts behaviroal analysis to subregions in orbitofrontal cortex |
+| `adaptations_analysis.ipynb` | looks at behavioral adaptations to consecutive muscimol injection sessions |
+| `adaptations_pat_2_analysis.ipynb` | looks at electrophysiological adaptations to consecutive muscimol injection sessions
+| `ccf_injection_coords_behavior_metric_correlations.ipynb` | looks at ccf-aligned muscimol injections and attempts to correlate structure-specific inactivation to behavioral outcomes |
+| `poster_session_muscimol_figures.ipynb` | generates SfN ready figures for switching dynamics and response rates in control vs muscimol sessions |
 
 ## Utils 
 
-### `tissuecyte_injections_coords_utils.py`
-**⚠️ Requires separate environment with `allensdk`** (conflicts with main analysis environment)
+Both utils files pull coordinate files from this folder: Z:\Vayle\Muscimol\injections_ccf_coordinates
 
-Functions for mapping injection coordinates to the Allen CCF using TissueCyte data:
-- `sort_structures_by_region()` - Categorize CCF structures into broad brain regions
+# `tissuecyte_injections_coords_utils.py`
+**Requires sdk environment (includes allensdk, deactivates dependencies in dr env)** (conflicts with dr environment)
 
-### `neuroglancer_injections_coords_utils.py`
-*Uses main analysis environment with `aind-zarr-utils`*
+Contains functions that convert TissueCyte injection coordinate data in .csv format to CCF data.
 
-Functions for converting neuroglancer annotation files to CCF coordinates:
-- `convert_neuroglancer_points_to_ccf()` - Batch convert annotation JSONs
-- `clean_neurogrlancer_ccf_pts()` - Clean and reformat coordinate data
+
+# `neuroglancer_injections_coords_utils.py`
+**Requires dr environment (includes aind_zarr_utils, deactivates dependencies in sdk env)**
+
+Contains functions that convert neuroglancer annotation files in .json format to CCF coordinates.
+
 
 ## How to use
+-need credentials for aws and codeoecean
+-check quilt if importing sessions isn't working. sometimes need to update quilt. ask ben hardcastle to run script for update.
 
-1. Open notebooks in VS Code or Jupyter
-2. Ensure you have access to the session data via `npc_lims`
-3. Run cells sequentially to reproduce analyses
-
-```python
-# Example: Load a session
-import npc_sessions
-session = npc_sessions.Session('ecephys_XXXXXX_YYYY-MM-DD_HH-MM-SS')
-```
 

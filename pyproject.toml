@@ -3,7 +3,22 @@ name = "dr-muscimol-analysis"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [
     "ipykernel>=6.29.5",
 ]
+
+[project.optional-dependencies]
+sdk = [
+  "allensdk"
+]
+
+dr = [
+    "dynamic-routing-analysis",
+    "polars>=1.36.1",
+    "codeocean==0.14.0", # 0.15.0/0.16.0 not compatible as of 29/06/26
+    "npc-sessions>=0.0.273",
+]
+
+[tool.uv.sources]   
+dynamic-routing-analysis = { git = "https://github.com/alleninstitute/dynamic_routing_analysis" }
