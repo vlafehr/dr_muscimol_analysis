@@ -12,6 +12,8 @@ dependencies = [
 sdk = [
   "allensdk",
   "numpy>=1.0",
+  "dynamic_routing_analysis",
+  "npc-sessions>=0.0.273",
 ]
 
 dr = [

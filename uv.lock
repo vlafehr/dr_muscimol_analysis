@@ -1842,6 +1842,9 @@ dr = [
 ]
 sdk = [
     { name = "allensdk" },
+    { name = "dynamic-routing-analysis" },
+    { name = "npc-sessions", version = "0.0.273", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
+    { name = "npc-sessions", version = "0.0.278", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "numpy", version = "1.26.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "numpy", version = "2.0.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
 ]
@@ -1851,9 +1854,11 @@ requires-dist = [
     { name = "allensdk", marker = "extra == 'sdk'" },
     { name = "codeocean", marker = "extra == 'dr'", specifier = "==0.14.0" },
     { name = "dynamic-routing-analysis", marker = "extra == 'dr'", git = "https://github.com/alleninstitute/dynamic_routing_analysis" },
+    { name = "dynamic-routing-analysis", marker = "extra == 'sdk'", git = "https://github.com/alleninstitute/dynamic_routing_analysis" },
     { name = "fastexcel", marker = "extra == 'dr'", specifier = ">=0.16.0" },
     { name = "ipykernel", specifier = ">=6.29.5" },
     { name = "npc-sessions", marker = "extra == 'dr'", specifier = ">=0.0.273" },
+    { name = "npc-sessions", marker = "extra == 'sdk'", specifier = ">=0.0.273" },
     { name = "numpy", marker = "extra == 'sdk'", specifier = ">=1.0" },
     { name = "polars", marker = "extra == 'dr'", specifier = ">=1.36.1" },
 ]

@@ -58,6 +58,6 @@ Contains functions that convert neuroglancer annotation files in .json format to
 ## How to use
 -need credentials for aws and codeoecean
 
--check quilt if importing sessions isn't working. sometimes need to update quilt. ask ben hardcastle to run script for update.
+-if you are having trouble pulling sessions from npc.sessions, check quilt (https://open.quiltdata.com/b/aind-scratch-data/tree/dynamic-routing/DynamicRoutingTask/Data/). sometimes need to update quilt. ask ben hardcastle to run script for update.
 
 
