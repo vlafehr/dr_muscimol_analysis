@@ -34,7 +34,7 @@ sdk and dr are mutually exclusive. syncing one disengages the dependencies of th
 | `muscimol_analysis_notebook.ipynb` | includes ephys analysis of muscimol effects |
 | `muscimol_controls_analysis.ipynb` | compares behavior in control sessions with and without saline injections to muscimol sessions |
 | `ORBm_versus_AId_analysis.ipynb` | restricts behaviroal analysis to subregions in orbitofrontal cortex |
-| `adaptations_analysis.ipynb` | looks at behavioral adaptations to consecutive muscimol injection sessions |
+| `adaptations_analysis.ipynb` | looks at firing rate changes following consecutive muscimol injection sessions |
 | `adaptations_analysis_part_2.ipynb` | looks at electrophysiological adaptations to consecutive muscimol injection sessions
 | `ccf_injection_coords_behavior_metric_correlations.ipynb` | looks at ccf-aligned muscimol injections and attempts to correlate structure-specific inactivation to behavioral outcomes |
 | `poster_session_muscimol_figures.ipynb` | generates SfN ready figures for switching dynamics and response rates in control vs muscimol sessions |
